@@ -3,6 +3,7 @@
 #include <iostream>
 
 using namespace std;
+Graph* newGraph;
 
 int main(){
 
@@ -21,6 +22,7 @@ int main(){
     }
 
     while(!std::cin.eof()){
+        int index = 0; // Sheridan: added index to check if the while loop is on its first iteration
         int startVertice;
         int endVertice;
         int weight;
@@ -32,25 +34,24 @@ int main(){
 
         // Here is where you load up the Graph object
 
-        //if to find out if it is the first line of the input or not
-        if(weight == 0){
-            // initialize the 2Darray to be startVertice by startVertice
-            Graph* newGraph = new Graph(startVertice);
-        } else{
-            // if it is not the initial verticies and edges given, add each of the edges and their weight to the graph 
+        //Sheridan: condition to find out if it is the first line of the input or not
+        if(index == 0){
+            newGraph = new Graph(startVertice);
 
+        }else{
+            newGraph->setAdjMatrix(startVertice, endVertice, weight);
         }
-    }
+
+        index++;
+    } 
 
     // And here is where you start working on the three tasks
 
     //Task One: Print out the adjacency matrix of graph G
     std::cout << "The adjacency matrix of G is: " << std::endl;
 
-    while(!std::cin.eof()){
-        cout << " 0 "; 
-        
-    }
+    cout << newGraph << endl;
+
     cout << endl;
 
     //Task Two: Print out the odd degrees in G
@@ -62,3 +63,4 @@ int main(){
 
     return 0;
 }
+
