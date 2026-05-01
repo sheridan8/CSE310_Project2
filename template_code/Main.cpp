@@ -66,7 +66,8 @@ int main(){
     //Task Three: Print out the shortest path lengths from all nodes
     for(int i = 0; i < numOfVertices; i++){
         cout << "The shortest path lengths from Node " << i << " to all other nodes are:" << endl;
-        newGraph->printLineOfAdjMatrix(i);
+        newGraph->minimumDistFromNode(i);
+        //newGraph->printLineOfAdjMatrix(i);
     }
 
 }
