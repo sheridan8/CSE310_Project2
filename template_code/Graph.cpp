@@ -56,13 +56,14 @@ void Graph::setAdjMatrix(int start, int end, int weight){
 void Graph::printOddInDegree(){
     for (int i = 0; i < totalVert; i++){
         int inDeg = 0;
+        
         for (int j = 0; j < totalVert; j++){
             if(adjMatrix[i][j] != 0){
                 inDeg++;
             }
         }
-        if((inDeg % 2) != 0){
-            cout << i;
+        if(inDeg % 2 == 1){
+            cout << i + 1 << " "; //Aisha: print the node number (i + 1) if it has an odd degree
             
         }
     }
