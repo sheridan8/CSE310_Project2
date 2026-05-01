@@ -58,9 +58,9 @@ int main(){
 
     //Task Two: Print out the odd degrees in G
     std::cout << "The nodes with odd degrees in G are:" << std::endl;
-    cout << "O = {";
+    cout << "O = { ";
     newGraph->printOddInDegree();
-    cout << "}" << endl;
+    cout << " }" << endl;
     
 
     //Task Three: Print out the shortest path lengths from all nodes
