@@ -17,7 +17,7 @@ class Graph{
         // Sheridan: getter and setter for 2D array cells
         void setAdjMatrix(int startVert, int endVert, int weight);
         int getAdjMatrix(){return adjMatrix[startVert][endVert];};
-        void printInDegreeValue();
+        void printOddInDegree();
         void printLineOfAdjMatrix(int);
 
         int getWeight();

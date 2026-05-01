@@ -53,15 +53,18 @@ void Graph::setAdjMatrix(int start, int end, int weight){
     adjMatrix[v][u] = weight; //Aisha: since the graph is undirected, I set the value for both [u][v] and [v][u]
 }
 
-void Graph::printInDegreeValue(){
+void Graph::printOddInDegree(){
     for (int i = 0; i < totalVert; i++){
+        int inDeg = 0;
         for (int j = 0; j < totalVert; j++){
-            cout << adjMatrix[i][j];
-            if (j < totalVert - 1){
-                    cout << " ";
-            } 
+            if(adjMatrix[i][j] != 0){
+                inDeg++;
+            }
         }
-        cout << endl;
+        if((inDeg % 2) != 0){
+            cout << i;
+            
+        }
     }
 }
 
