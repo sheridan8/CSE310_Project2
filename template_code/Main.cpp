@@ -67,7 +67,7 @@ int main(){
     for(int i = 0; i < numOfVertices; i++){
         cout << "The shortest path lengths from Node " << i << " to all other nodes are:" << endl;
         newGraph->minimumDistFromNode(i);
-        //newGraph->printLineOfAdjMatrix(i);
+        newGraph->printLineOfAdjMatrix();
     }
 
 }
