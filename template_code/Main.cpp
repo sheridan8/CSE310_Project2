@@ -42,6 +42,9 @@ int main(){
         index++;
     } 
 
+    //For tasks 2 and three i need something to return the weight from each vertice
+    
+
     // And here is where you start working on the three tasks
 
     //Task One: Print out the adjacency matrix of graph G
@@ -53,10 +56,17 @@ int main(){
 
     //Task Two: Print out the odd degrees in G
     std::cout << "The nodes with odd degrees in G are:" << std::endl;
-
+    //cout << "O = {" << oddEdges << "}" << endl;
+    
 
     //Task Three: Print out the shortest path lengths from all nodes
-    
+    for(int i = 1; i <= numOfVertices; i++){
+        cout << "The shortest path lengths from Node " << i << " to all other nodes are:" << endl;
+        for(int j = 1; j <= numOfEdges; j++){
+            //cout << j << ": " << numFromNode << endl;
+        }
+        cout << endl;
+    }
 
     return 0;
 }
