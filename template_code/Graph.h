@@ -15,11 +15,13 @@ class Graph{
         ~Graph(); // Aisha: added desconstructor 
 
         // Sheridan: getter and setter for 2D array cells
-        void setAdjMatrix(int startVert, int endVert, int weight){adjMatrix[startVert][endVert] = weight;};
+        void setAdjMatrix(int startVert, int endVert, int weight);
         int getAdjMatrix(){return adjMatrix[startVert][endVert];};
 
         int getWeight();
         void setWeight(int);
+
+        void printAdjMatrix(); // Aisha: added function to print the adjacency matrix
         
     
 

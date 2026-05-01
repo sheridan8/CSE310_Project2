@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-Graph* newGraph;
+
 
 int main(){
 
@@ -18,8 +18,12 @@ int main(){
     }
     else{
         std::cout<<"Input not found!"<<std::endl;
-        return NULL;
+        return 1;
     }
+
+    // Aisha: Moved the creation of the Graph object here so that we can use the number of vertices read from the input file to initialize the adjacency matrix in the Graph constructor
+    Graph* newGraph= new Graph(numOfVertices); // Aisha: created a new Graph object with the number of vertices read from the input file
+    
 
     while(!std::cin.eof()){
         int index = 0; // Sheridan: added index to check if the while loop is on its first iteration
@@ -33,15 +37,8 @@ int main(){
         newEdge->setWeight(weight);
 
         // Here is where you load up the Graph object
-
-        //Sheridan: condition to find out if it is the first line of the input or not
-        if(index == 0){
-            newGraph = new Graph(startVertice);
-
-        }else{
-            newGraph->setAdjMatrix(startVertice, endVertice, weight);
-        }
-
+        newGraph->setAdjMatrix(startVertice, endVertice, weight);
+        
         index++;
     } 
 
@@ -50,7 +47,7 @@ int main(){
     //Task One: Print out the adjacency matrix of graph G
     std::cout << "The adjacency matrix of G is: " << std::endl;
 
-    cout << newGraph << endl;
+    newGraph->printAdjMatrix();
 
     cout << endl;
 
