@@ -9,6 +9,7 @@ class Graph{
         int weight;
         // Initialize the adjacency matrix as a 2D array
         int** adjMatrix; 
+        int** tableOfProgress;
     public:
         Graph();
         Graph(int);
@@ -17,6 +18,7 @@ class Graph{
         // Sheridan: getter and setter for 2D array cells
         void setAdjMatrix(int startVert, int endVert, int weight);
         int getAdjMatrix(){return adjMatrix[startVert][endVert];};
+        int minimumDistFromNode(int, int);
         void printOddInDegree();
         void printLineOfAdjMatrix(int);
 

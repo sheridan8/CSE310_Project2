@@ -53,6 +53,41 @@ void Graph::setAdjMatrix(int start, int end, int weight){
     adjMatrix[v][u] = weight; //Aisha: since the graph is undirected, I set the value for both [u][v] and [v][u]
 }
 
+int Graph::minimumDistFromNode(int nodes, int wantedNode){
+    int distance = 0; 
+
+    tableOfProgress = new int*[nodes];
+
+    //Creating each row 
+    for(int i = 0; i < 3; i++){
+        tableOfProgress[i] = new int[nodes];
+    }
+
+    // Initialized the matrix with 0s
+    for (int i = 0; i < nodes; i++){
+        for(int j = 0; j < 3; j++){
+            tableOfProgress[i][j] = 0;
+        }
+    }
+
+    //Finding the minimum distance
+    for(int i = 0; i < nodes; i++){
+        if(adjMatrix[nodes-1][wantedNode-1] != 0){
+            return distance;
+        } else {
+            
+            //Make table of progress
+            for (int i = 0; i < nodes; i++){
+                for(int j = 0; j < 3; j++){
+                    tableOfProgress[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
 void Graph::printOddInDegree(){
     for (int i = 0; i < totalVert; i++){
         int inDeg = 0;
@@ -62,7 +97,7 @@ void Graph::printOddInDegree(){
             }
         }
         if((inDeg % 2) != 0){
-            cout << i;
+            cout << (i+1) << ", ";
             
         }
     }
@@ -70,7 +105,7 @@ void Graph::printOddInDegree(){
 
 void Graph::printLineOfAdjMatrix(int line){
     for (int j = 0; j < totalVert; j++){
-        cout << j << ": " << adjMatrix[line][j];
+        cout << j << ": " << adjMatrix[line-1][j];
     }
     cout << endl;
     //S: this prints the first line or the 2 or 3 etc depending on the node. 
