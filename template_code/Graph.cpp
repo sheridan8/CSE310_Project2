@@ -90,40 +90,31 @@ void Graph::minimumDistFromNode(int nodeI){
 void Graph::printOddInDegree(){
     for (int i = 0; i < totalVert; i++){
         int inDeg = 0;
-        
         for (int j = 0; j < totalVert; j++){
             if(adjMatrix[i][j] != 0){
                 inDeg++;
             }
         }
-<<<<<<< HEAD
-        if(inDeg % 2 == 1){
-            cout << i + 1 << " "; //Aisha: print the node number (i + 1) if it has an odd degree
-=======
         if((inDeg % 2) != 0){
             cout << (i+1) << ", ";
->>>>>>> 3bf427f0592ac43f1b23b5fd7a1ebfc841fbfd0c
-            
         }
     }
 }
 
-void Graph::printLineOfAdjMatrix(){
+void Graph::printLineOfAdjMatrix(int line){
     for (int j = 0; j < totalVert; j++){
-        cout << j+1 << ": " << tableOfProgress[j];
+        cout << line << ": " << tableOfProgress[line-1];
     }
     cout << endl;
-    //S: this prints the first line or the 2 or 3 etc depending on the node. 
 }
 
-void Graph::printAdjMatrix(){ // Aisha: function to print the adjacency matrix
-    
+void Graph::printAdjMatrix(){
     for (int i = 0; i < totalVert; i++){
         for (int j = 0; j < totalVert; j++){
             cout << adjMatrix[i][j];
             if (j < totalVert - 1){
-                    cout << " ";
-            } 
+                cout << " ";
+            }
         }
         cout << endl;
     }
