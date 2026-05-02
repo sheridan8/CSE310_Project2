@@ -60,14 +60,22 @@ int main(){
     std::cout << "The nodes with odd degrees in G are:" << std::endl;
     cout << "O = { ";
     newGraph->printOddInDegree();
-    cout << " }" << endl;
+    cout << "}" << endl;
     
 
     //Task Three: Print out the shortest path lengths from all nodes
     for(int i = 0; i < numOfVertices; i++){
-        cout << "The shortest path lengths from Node " << i << " to all other nodes are:" << endl;
-        newGraph->minimumDistFromNode(i);
-        newGraph->printLineOfAdjMatrix();
+        int inDeg = 0;
+        for(int j = 0; j < numOfVertices; j++){
+            if(newGraph->getAdjMatrixCell(i, j) != 0){
+                inDeg++;
+            }
+        }
+        if((inDeg % 2) != 0){
+            cout << "The shortest path lengths from Node " << i+1 << " to all other nodes are:" << endl;
+            newGraph->minimumDistFromNode(i+1);
+            newGraph->printLineOfAdjMatrix(i+1);
+        }
     }
 
 }

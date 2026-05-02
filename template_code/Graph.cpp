@@ -53,68 +53,69 @@ void Graph::setAdjMatrix(int start, int end, int weight){
     adjMatrix[v][u] = weight; //Aisha: since the graph is undirected, I set the value for both [u][v] and [v][u]
 }
 
-void Graph::minimumDistFromNode(int nodeI){
-    tableOfProgress = new int[totalVert];//init table of progress with size totalVert 
-    
-    // Initialized the array with 0s
-    for (int i = 0; i < totalVert; i++){
-        tableOfProgress[i] = 0;
+int Graph::minimumDistFromNode(int nodeI){
+    tableOfProgress = new int[totalVert];
+    for(int i = 0; i < totalVert; i++){
+        tableOfProgress[i] = 99999;
     }
-    
-    int distance = 0; // Keeps track of distance
-    int preNode = 0; //Keeps track of the previous node
+    tableOfProgress[nodeI-1] = 0;
 
-    //Finding the minimum distance for nodeI aka Node A or Node B etc in the loop in main Task 3.
-    for(int i = 0; i < nodeI; i++){
-        preNode = nodeI;
-            //if the node given and the current node has a value in the adjMatrix they have an edge together so return that
-            //or if the wanted node is the same as the node were testing then it cant have an edge with itself so the value is zero
-        if(adjMatrix[nodeI-1][i] != 0 || nodeI-1 == i){
-            tableOfProgress[i] = adjMatrix[nodeI-1][i];
-        } else {
-            while(preNode != i){
-                int minimum = 2001;
-                for(int j = 0; j < preNode; j++){
-                    if (minimum > adjMatrix[preNode-1][j] && adjMatrix[preNode-1][j] != 0){
-                        minimum = adjMatrix[preNode-1][j];
-                        preNode = j;
-                    }
-                }
-                distance =+ minimum;
+    bool visited[totalVert];
+    for(int i = 0; i < totalVert; i++) visited[i] = false;
+
+    for(int counts = 0; counts < totalVert; counts++){
+        int preNode = -1;
+        for(int i = 0; i < totalVert; i++){
+            if(!visited[i] && (preNode == -1 || tableOfProgress[i] < tableOfProgress[preNode]))
+                preNode = i;
+        }
+        visited[preNode] = true;
+        for(int i = 0; i < totalVert; i++){
+            if(adjMatrix[preNode][i] != 0 && !visited[i]){
+                int distance = tableOfProgress[preNode] + adjMatrix[preNode][i];
+                if(distance < tableOfProgress[i])
+                    tableOfProgress[i] = distance;
             }
-            tableOfProgress[i] = distance;
         }
     }
+    return tableOfProgress[nodeI-1];
 }
 
 void Graph::printOddInDegree(){
     for (int i = 0; i < totalVert; i++){
         int inDeg = 0;
+        
         for (int j = 0; j < totalVert; j++){
             if(adjMatrix[i][j] != 0){
                 inDeg++;
             }
         }
         if((inDeg % 2) != 0){
-            cout << (i+1) << ", ";
+            cout << (i+1) << " "; //Sheridan: this prints the node number (i+1) if it has an odd degree
+            
         }
     }
 }
 
 void Graph::printLineOfAdjMatrix(int line){
-    for (int j = 0; j < totalVert; j++){
-        cout << line << ": " << tableOfProgress[line-1];
+    for(int j = 0; j < totalVert; j++){
+        cout << (j+1) << ": " << tableOfProgress[j] << endl;
     }
-    cout << endl;
+    //Sheridan: this prints the first line or the 2 or 3 etc depending on the node. 
 }
 
-void Graph::printAdjMatrix(){
+int Graph::getAdjMatrixCell(int row, int col){
+    return adjMatrix[row][col];
+}
+
+void Graph::printAdjMatrix(){ // Aisha: function to print the adjacency matrix
+    
     for (int i = 0; i < totalVert; i++){
         for (int j = 0; j < totalVert; j++){
             cout << adjMatrix[i][j];
             if (j < totalVert - 1){
-                cout << " ";
-            }
+                    cout << " ";
+            } 
         }
         cout << endl;
     }
